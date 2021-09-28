@@ -9,12 +9,16 @@ namespace ProjetoVendas.Model
     public class Endereco
     {
         
-        public int Id { get; set; }
-        [JsonProperty]
+        public long Id { get; set; }
+        [JsonProperty("code")]
         public string Cep { get; set; }
+        [JsonProperty("state")]
         public string UF { get; set; }
+        [JsonProperty("city")]
         public string Cidade { get; set; }
+        [JsonProperty("district")]
         public string Bairro { get; set; }
+        [JsonProperty("address")]
         public string Rua { get; set; }
 
     }

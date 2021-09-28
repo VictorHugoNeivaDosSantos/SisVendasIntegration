@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using ProjetoVendas.Dto;
+using ProjetoVendas.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,5 +10,11 @@ namespace ProjetoVendas.Mapper
 {
     public class MapperDtoEntity : Profile
     {
+        public MapperDtoEntity()
+        {
+            CreateMap<Pessoa, PessoaDto>()
+                .ForMember(dest => dest.Nome, map => map.MapFrom(src => $"{src.Nome} {src.Sobrenome}"))
+                .ReverseMap();
+        }
     }
 }
