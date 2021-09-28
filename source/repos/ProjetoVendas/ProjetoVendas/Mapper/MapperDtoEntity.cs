@@ -12,7 +12,7 @@ namespace ProjetoVendas.Mapper
     {
         public MapperDtoEntity()
         {
-            CreateMap<Pessoa, PessoaDto>()
+            CreateMap<PessoaDto, Pessoa>()
                 .ForMember(dest => dest.Nome, map => map.MapFrom(src => $"{src.Nome} {src.Sobrenome}"))
                 .ReverseMap();
         }

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\victo\\Desktop\\SisVendas\\SisVendasIntegration\\source\\repos\\ProjetoVendas\\ProjetoVendas\\ProjetoVendas.csproj": {}
+    "C:\\Users\\ADM\\Desktop\\sisvendas\\SisVendasIntegration\\source\\repos\\ProjetoVendas\\ProjetoVendas\\ProjetoVendas.csproj": {}
   },
   "projects": {
-    "C:\\Users\\victo\\Desktop\\SisVendas\\SisVendasIntegration\\source\\repos\\ProjetoVendas\\ProjetoVendas\\ProjetoVendas.csproj": {
+    "C:\\Users\\ADM\\Desktop\\sisvendas\\SisVendasIntegration\\source\\repos\\ProjetoVendas\\ProjetoVendas\\ProjetoVendas.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\victo\\Desktop\\SisVendas\\SisVendasIntegration\\source\\repos\\ProjetoVendas\\ProjetoVendas\\ProjetoVendas.csproj",
+        "projectUniqueName": "C:\\Users\\ADM\\Desktop\\sisvendas\\SisVendasIntegration\\source\\repos\\ProjetoVendas\\ProjetoVendas\\ProjetoVendas.csproj",
         "projectName": "ProjetoVendas",
-        "projectPath": "C:\\Users\\victo\\Desktop\\SisVendas\\SisVendasIntegration\\source\\repos\\ProjetoVendas\\ProjetoVendas\\ProjetoVendas.csproj",
-        "packagesPath": "C:\\Users\\victo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\victo\\Desktop\\SisVendas\\SisVendasIntegration\\source\\repos\\ProjetoVendas\\ProjetoVendas\\obj\\",
+        "projectPath": "C:\\Users\\ADM\\Desktop\\sisvendas\\SisVendasIntegration\\source\\repos\\ProjetoVendas\\ProjetoVendas\\ProjetoVendas.csproj",
+        "packagesPath": "C:\\Users\\ADM\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ADM\\Desktop\\sisvendas\\SisVendasIntegration\\source\\repos\\ProjetoVendas\\ProjetoVendas\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\victo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ADM\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -85,7 +85,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }

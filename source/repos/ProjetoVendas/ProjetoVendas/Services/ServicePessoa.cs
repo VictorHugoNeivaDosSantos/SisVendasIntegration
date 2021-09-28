@@ -28,19 +28,19 @@ namespace ProjetoVendas.Services
             _mapper = mapper;
         }
 
-        public async Task<long> AddPessoaAsync(PessoaDto pessoa)
+        public async Task<long> AddPessoaAsync(PessoaDto pessoaDto)
         {
-           var pessoaM = new Pessoa();
-            _mapper.Map(pessoaM, pessoa);
+           var pessoa = new Pessoa();
+            _mapper.Map(pessoaDto, pessoa);
 
             if (pessoa.Cep != null)
             {
                 var endereco = await _cep.GetEnderecoAsync(pessoa.Cep);
-                pessoaM.EnderecoId = await _repositoryEndereco.AddEnderecoAsync(endereco);
+                pessoa.EnderecoId = await _repositoryEndereco.AddEnderecoAsync(endereco);
             }
 
-            await _repositoryPessoa.AddPessoa(pessoaM);
-            return pessoaM.Id;
+            await _repositoryPessoa.AddPessoa(pessoa);
+            return pessoa.Id;
         }
 
         public async Task<PessoaDto> GetPessoaDtoAsync(long id)

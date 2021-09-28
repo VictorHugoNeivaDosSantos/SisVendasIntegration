@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using ProjetoVendas.Context;
+using ProjetoVendas.Integrations;
+using ProjetoVendas.Integrations.Interface;
 using ProjetoVendas.Mapper;
 using ProjetoVendas.Model;
 using ProjetoVendas.Repositories;
@@ -39,6 +41,7 @@ namespace ProjetoVendas
             services.AddTransient<IServicePessoa, ServicePessoa>();
             services.AddTransient<IRepositoryEndereco, RepositoryEndereco>();
             services.AddTransient<IRepositoryPessoa, RepositoryPessoa>();
+            services.AddTransient<ICep, Cep>();
             
             var mapConfig = new MapperConfiguration(mc => mc.AddProfile(new MapperDtoEntity()));
             services.AddSingleton(mapConfig.CreateMapper());

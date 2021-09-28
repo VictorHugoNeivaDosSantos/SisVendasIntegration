@@ -9,8 +9,8 @@ using ProjetoVendas.Context;
 namespace ProjetoVendas.Migrations
 {
     [DbContext(typeof(ContextDB))]
-    [Migration("20210928023314_inicial")]
-    partial class inicial
+    [Migration("20210928143332_inicial2")]
+    partial class inicial2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -70,7 +70,7 @@ namespace ProjetoVendas.Migrations
 
                     b.HasIndex("EnderecoId");
 
-                    b.ToTable("Pessoa");
+                    b.ToTable("pessoa");
                 });
 
             modelBuilder.Entity("ProjetoVendas.Model.Pessoa", b =>
