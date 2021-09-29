@@ -30,7 +30,7 @@ namespace ProjetoVendas.Services
 
         public async Task<long> AddPessoaAsync(PessoaDto pessoaDto)
         {
-           var pessoa = new Pessoa();
+            var pessoa = new Pessoa();
             _mapper.Map(pessoaDto, pessoa);
 
             if (pessoa.Cep != null)
@@ -52,5 +52,32 @@ namespace ProjetoVendas.Services
             return dto;
 
         }
+
+        public async Task<List<PessoaDto>> GetPessoaListAsync()
+        {
+            List<PessoaDto> list = new List<PessoaDto>();
+            var pessoa = await _repositoryPessoa.GetListAsync();
+            _mapper.Map(list, pessoa);
+            return list;
+        }
+
+        public async Task<List<PessoaEnderecoDto>> GetPessoaListIncludeAsync()
+        {
+            List<PessoaEnderecoDto> list = new List<PessoaEnderecoDto>();
+            var pessoa = await _repositoryPessoa.GetListInlcudeAsync();
+            _mapper.Map(pessoa, list);
+            return list;
+        }
+
+        public async Task<string> DeletarPessoaAsync(long id)
+        {
+             var idEndereco = await _repositoryPessoa.SelectIdEnderecoPessoaAsync(id);
+            if (idEndereco != 0)
+            {
+               string t = await _repositoryEndereco.DeletarEnderecoAsync(idEndereco);
+            }
+            return await _repositoryPessoa.DeletarPessoaIdAsync(id);
+        }
+
     }
 }

@@ -33,5 +33,24 @@ namespace ProjetoVendas.Controllers
         {
             return await _service.GetPessoaDtoAsync(id);
         }
+
+        [HttpGet("lista")]
+        public async Task<List<PessoaDto>> GetListPessoaAsync()
+        {
+            return await _service.GetPessoaListAsync();
+        }
+
+        [HttpGet("listaEndereco")]
+        public async Task<List<PessoaEnderecoDto>> GetListPessoaEnderecoAsync()
+        {
+            return await _service.GetPessoaListIncludeAsync();
+        }
+        [HttpDelete("{id}")]
+
+        public async Task<string> DeletarPessoa(long id)
+        {
+            return await _service.DeletarPessoaAsync(id);
+        }
+
     }
 }

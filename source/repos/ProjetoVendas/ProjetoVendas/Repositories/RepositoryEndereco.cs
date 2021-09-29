@@ -23,5 +23,13 @@ namespace ProjetoVendas.Repositories
             await _context.SaveChangesAsync();
             return endereco.Id;
         }
+
+        public async Task<string> DeletarEnderecoAsync(long id)
+        {
+            var endereco = _context.Endereco.FirstOrDefault(f => f.Id == id) ?? throw new Exception("Endereço não encontrado");
+            _context.Endereco.Remove(endereco);
+            await _context.SaveChangesAsync();
+            return "Endereco deletado com sucesso!";
+        }
     }
 }

@@ -15,6 +15,10 @@ namespace ProjetoVendas.Mapper
             CreateMap<PessoaDto, Pessoa>()
                 .ForMember(dest => dest.Nome, map => map.MapFrom(src => $"{src.Nome} {src.Sobrenome}"))
                 .ReverseMap();
+            CreateMap<Pessoa, PessoaEnderecoDto>()
+                .ForMember(dest => dest.Cep, map => map.MapFrom(src => src.Cep))
+                .ForMember(dest => dest.Cidade, map => map.MapFrom(src => src.Endereco.Cidade));
+            
         }
     }
 }
