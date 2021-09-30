@@ -6,6 +6,9 @@ namespace ProjetoVendas.Repositories.Interface
     public interface IRepositoryEndereco
     {
         Task<long> AddEnderecoAsync(Endereco endereco);
-        Task<string> DeletarEnderecoAsync(long id);
+        Task DeletarEnderecoAsync(long id);
+        Task EditarEnderecoAsync(Endereco endereco);
+        Task<Endereco> GetEnderecoAsync(long id);
+            
     }
 }

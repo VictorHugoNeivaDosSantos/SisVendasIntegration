@@ -9,8 +9,8 @@ using ProjetoVendas.Context;
 namespace ProjetoVendas.Migrations
 {
     [DbContext(typeof(ContextDB))]
-    [Migration("20210928143332_inicial2")]
-    partial class inicial2
+    [Migration("20210930001634_new")]
+    partial class @new
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -63,7 +63,7 @@ namespace ProjetoVendas.Migrations
                     b.Property<string>("Nome")
                         .HasColumnType("text");
 
-                    b.Property<string>("Sobrenome")
+                    b.Property<string>("SobreNome")
                         .HasColumnType("text");
 
                     b.HasKey("Id");

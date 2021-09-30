@@ -13,12 +13,14 @@ namespace ProjetoVendas.Mapper
         public MapperDtoEntity()
         {
             CreateMap<PessoaDto, Pessoa>()
-                .ForMember(dest => dest.Nome, map => map.MapFrom(src => $"{src.Nome} {src.Sobrenome}"))
+                .ForMember(dest => dest.Nome, map => map.MapFrom(src => $"{src.Nome}"))
                 .ReverseMap();
             CreateMap<Pessoa, PessoaEnderecoDto>()
                 .ForMember(dest => dest.Cep, map => map.MapFrom(src => src.Cep))
                 .ForMember(dest => dest.Cidade, map => map.MapFrom(src => src.Endereco.Cidade));
-            
+            CreateMap<Pessoa, PessoaDto>()
+                .ForMember(dest => dest.Nome, src => src.MapFrom(src => src.Nome))
+                .ForMember(dest => dest.Cep , src => src.MapFrom(src => src.Cep));
         }
     }
 }

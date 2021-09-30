@@ -9,7 +9,7 @@ namespace ProjetoVendas.Dto
     public class PessoaDto
     {
         public string Nome { get; set; }
-        public string Sobrenome { get; set; }
+       //public string SobreNome { get; set; }
         public string Cep { get; set; }
 
     }

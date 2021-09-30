@@ -18,14 +18,14 @@ namespace ProjetoVendas.Repositories
             _context = context;
         }
 
-        public async Task<Pessoa> AddPessoa(Pessoa pessoa)
+        public async Task<Pessoa> AddPessoaAsync(Pessoa pessoa)
         {
             _context.Pessoa.Add(pessoa);
             await _context.SaveChangesAsync();
             return pessoa;
         }
 
-        public async Task<Pessoa> GetPessoa(long id)
+        public async Task<Pessoa> GetPessoaAsync(long id)
         {
             return await _context.Pessoa.Include(i => i.Endereco).FirstOrDefaultAsync(f => f.Id == id);
 
@@ -40,12 +40,11 @@ namespace ProjetoVendas.Repositories
             return await _context.Pessoa.Include(i => i.Endereco).ToListAsync();
         }
 
-        public async Task<string> DeletarPessoaIdAsync(long id)
+        public async Task DeletarPessoaIdAsync(long id)
         {
-            var pessoa = await _context.Pessoa.FirstOrDefaultAsync(f => f.Id == id) ?? throw new Exception("Pessoa não encontrada");
+            var pessoa = await _context.Pessoa.FirstOrDefaultAsync(f => f.Id == id);
             _context.Pessoa.Remove(pessoa);
             await _context.SaveChangesAsync();
-            return "Pessoa excluída";
         }
 
         public async Task<long> SelectIdEnderecoPessoaAsync(long id)
@@ -53,6 +52,12 @@ namespace ProjetoVendas.Repositories
             //var pessoa = await _context.Pessoa.FirstOrDefaultAsync(f => f.Id == id);
             //return pessoa.EnderecoId;
             return await _context.Pessoa.Where(w => w.Id == id).Select(s => s.EnderecoId).FirstOrDefaultAsync();
+        }
+
+        public async Task EditarPessoaAsync(Pessoa pessoa)
+        {
+            _context.Pessoa.Update(pessoa);
+            await _context.SaveChangesAsync();
         }
     }
 }

@@ -61,9 +61,6 @@ namespace ProjetoVendas.Migrations
                     b.Property<string>("Nome")
                         .HasColumnType("text");
 
-                    b.Property<string>("Sobrenome")
-                        .HasColumnType("text");
-
                     b.HasKey("Id");
 
                     b.HasIndex("EnderecoId");

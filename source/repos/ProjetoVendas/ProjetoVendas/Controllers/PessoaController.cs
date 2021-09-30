@@ -23,7 +23,7 @@ namespace ProjetoVendas.Controllers
         }
 
         [HttpPost]
-        public async Task<long> AddPessoaAsync([FromBody] PessoaDto pessoa)
+        public async Task<string> AddPessoaAsync([FromBody] PessoaDto pessoa)
         {
           return  await _service.AddPessoaAsync(pessoa);
         }
@@ -47,10 +47,18 @@ namespace ProjetoVendas.Controllers
         }
         [HttpDelete("{id}")]
 
-        public async Task<string> DeletarPessoa(long id)
+        public async Task<string> DeletarPessoa([FromRoute]long id)
         {
             return await _service.DeletarPessoaAsync(id);
         }
+
+        [HttpPut("{id}")]
+
+        public async Task AtualizarPessoaAsync([FromRoute]long id,[FromBody] PessoaDto pessoa)
+        {
+            await _service.EditarPessoaAsync(id, pessoa);
+        }
+
 
     }
 }

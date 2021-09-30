@@ -28,37 +28,39 @@ namespace ProjetoVendas.Services
             _mapper = mapper;
         }
 
-        public async Task<long> AddPessoaAsync(PessoaDto pessoaDto)
+        public async Task<string> AddPessoaAsync(PessoaDto pessoaDto)
         {
             var pessoa = new Pessoa();
             _mapper.Map(pessoaDto, pessoa);
 
-            if (pessoa.Cep != null)
+            if (pessoa.Cep.Length == 8)
             {
                 var endereco = await _cep.GetEnderecoAsync(pessoa.Cep);
                 pessoa.EnderecoId = await _repositoryEndereco.AddEnderecoAsync(endereco);
             }
+            else
+            {
+                return "Cliente sem endereco cadastrado!";
+            }
 
-            await _repositoryPessoa.AddPessoa(pessoa);
-            return pessoa.Id;
+            await _repositoryPessoa.AddPessoaAsync(pessoa);
+            return "Cliente cadastrado!";
         }
 
         public async Task<PessoaDto> GetPessoaDtoAsync(long id)
         {
-            PessoaDto dto = new PessoaDto();
-
-            var pessoa = _repositoryPessoa.GetPessoa(id);
-            await _mapper.Map(dto, pessoa);
-            return dto;
-
+            PessoaDto Dto = new PessoaDto();
+            var pessoa = await _repositoryPessoa.GetPessoaAsync(id);
+            _mapper.Map(pessoa, Dto);
+            return Dto;
         }
 
         public async Task<List<PessoaDto>> GetPessoaListAsync()
         {
-            List<PessoaDto> list = new List<PessoaDto>();
-            var pessoa = await _repositoryPessoa.GetListAsync();
-            _mapper.Map(list, pessoa);
-            return list;
+            var listaPessoa = await _repositoryPessoa.GetListAsync();
+            List<PessoaDto> listaPessoaDto = new List<PessoaDto>();
+            _mapper.Map(listaPessoa, listaPessoaDto);
+            return listaPessoaDto;
         }
 
         public async Task<List<PessoaEnderecoDto>> GetPessoaListIncludeAsync()
@@ -71,12 +73,30 @@ namespace ProjetoVendas.Services
 
         public async Task<string> DeletarPessoaAsync(long id)
         {
-             var idEndereco = await _repositoryPessoa.SelectIdEnderecoPessoaAsync(id);
+            var idEndereco = await _repositoryPessoa.SelectIdEnderecoPessoaAsync(id);
             if (idEndereco != 0)
             {
-               string t = await _repositoryEndereco.DeletarEnderecoAsync(idEndereco);
+                await _repositoryEndereco.DeletarEnderecoAsync(idEndereco);
             }
-            return await _repositoryPessoa.DeletarPessoaIdAsync(id);
+            //await _repositoryPessoa.DeletarPessoaIdAsync(id);
+
+            return "Pessoa deletada com sucesso";
+        }
+
+        public async Task EditarPessoaAsync(long id, PessoaDto pessoaDto)
+        {
+            var pessoa = await _repositoryPessoa.GetPessoaAsync(id);         
+            _mapper.Map(pessoaDto, pessoa);
+            var endereco = await _repositoryEndereco.GetEnderecoAsync(pessoa.EnderecoId);
+            var enderecoNew = await _cep.GetEnderecoAsync(pessoa.Cep);
+            endereco.Cep = enderecoNew.Cep;
+            endereco.Bairro = enderecoNew.Bairro;
+            endereco.Cidade = enderecoNew.Cidade;
+            endereco.Rua = enderecoNew.Rua;
+            await _repositoryEndereco.EditarEnderecoAsync(endereco);        
+            await _repositoryPessoa.EditarPessoaAsync(pessoa);
+
+           
         }
 
     }

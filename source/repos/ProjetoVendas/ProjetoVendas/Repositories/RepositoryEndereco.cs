@@ -1,4 +1,5 @@
-﻿using ProjetoVendas.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using ProjetoVendas.Context;
 using ProjetoVendas.Model;
 using ProjetoVendas.Repositories.Interface;
 using System;
@@ -24,12 +25,23 @@ namespace ProjetoVendas.Repositories
             return endereco.Id;
         }
 
-        public async Task<string> DeletarEnderecoAsync(long id)
+        public async Task DeletarEnderecoAsync(long id)
         {
             var endereco = _context.Endereco.FirstOrDefault(f => f.Id == id) ?? throw new Exception("Endereço não encontrado");
             _context.Endereco.Remove(endereco);
             await _context.SaveChangesAsync();
-            return "Endereco deletado com sucesso!";
         }
+
+        public async Task EditarEnderecoAsync(Endereco endereco)
+        {
+            _context.Endereco.Update(endereco);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<Endereco> GetEnderecoAsync(long id)
+        {
+            return await _context.Endereco.FirstOrDefaultAsync(f => f.Id == id);
+        }
+
     }
 }

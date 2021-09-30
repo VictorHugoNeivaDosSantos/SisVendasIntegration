@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace ProjetoVendas.Migrations
 {
-    public partial class inicial : Migration
+    public partial class @new : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -25,21 +25,21 @@ namespace ProjetoVendas.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Pessoa",
+                name: "pessoa",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Nome = table.Column<string>(type: "text", nullable: true),
-                    Sobrenome = table.Column<string>(type: "text", nullable: true),
+                    SobreNome = table.Column<string>(type: "text", nullable: true),
                     Cep = table.Column<string>(type: "text", nullable: true),
                     EnderecoId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Pessoa", x => x.Id);
+                    table.PrimaryKey("PK_pessoa", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Pessoa_Endereco_EnderecoId",
+                        name: "FK_pessoa_Endereco_EnderecoId",
                         column: x => x.EnderecoId,
                         principalTable: "Endereco",
                         principalColumn: "Id",
@@ -47,15 +47,15 @@ namespace ProjetoVendas.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Pessoa_EnderecoId",
-                table: "Pessoa",
+                name: "IX_pessoa_EnderecoId",
+                table: "pessoa",
                 column: "EnderecoId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Pessoa");
+                name: "pessoa");
 
             migrationBuilder.DropTable(
                 name: "Endereco");
